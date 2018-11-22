@@ -1,4 +1,11 @@
-﻿后端接口:
+﻿登录案例:
+post:/user/login -> code,username -> openid
+post:/user/getinfo ->signature,encryptedData,iv ->数据
+update:/user/logout
+
+
+
+后端接口:
 分页查找GET:
 http://127.0.0.1:3000/shops?_start&_limit=2&categoryId=9
 条件查找GET:
