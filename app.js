@@ -8,6 +8,15 @@ const users = require('./routes/users')
 const musics = require('./routes/musics')
 const shops = require('./routes/shops')
 
+// 存储session的数据
+global.sessionStore = {
+  // '时间戳':{
+  //  每个人的session
+  //    user:{}
+  // }
+};
+
+
 
 
 
@@ -31,10 +40,20 @@ app.use(async (ctx, next) => {
 })
 
 // 自定义添加代码 开始
-let session = require('./middlewares/session.js');
+// let session = require('./middlewares/session.js');
 let login = require('./middlewares/login.js');
-session(app);
-// app.use(login);
+// session(app);
+app.use(async function(ctx,next) {
+  console.log(ctx.headers);
+  ctx.session = {};
+  //  挂载属性
+  if(ctx.headers.token) {
+   ctx.session = global.sessionStore[ctx.headers.token];
+  }   
+  await next();
+});
+
+app.use(login);
 const formidable = require('koa-formidable');
 const path = require('path');
 

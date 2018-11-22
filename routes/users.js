@@ -16,11 +16,20 @@ router.post('/login', async function(ctx, next) {
         openid = body.openid;
 
         // 记住这个客户端的登录信息,下次访问,也能有该信息
-        ctx.session.user = {
-            username: ctx.request.body.username,
-            sessionKey,
-            openid
-        };
+        let key = Date.now()+'';
+        // 将数据保存再全局
+        global.sessionStore[key] = {
+            user: {
+                username: ctx.request.body.username,
+                sessionKey,
+                openid
+            }
+        }
+
+
+        // 将标识放到响应头上
+        ctx.set('token', key);
+
         // 响应登录成功状态码
         ctx.body = { code: '001', msg: '登录成功', user: ctx.session.user };
 

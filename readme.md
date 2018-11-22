@@ -1,7 +1,7 @@
 ﻿登录案例:
-post:/user/login -> code,username -> openid
-post:/user/getinfo ->signature,encryptedData,iv ->数据
-update:/user/logout
+post:/users/login -> code,username -> openid
+post:/users/getinfo ->signature,encryptedData,iv ->数据
+put:/users/logout
 
 
 
@@ -20,12 +20,12 @@ http://127.0.0.1:3000/shops?id=xxx
 添加商品POST:
 http://127.0.0.1:3000/shops
 {
-	address: "湖北省武汉市洪山区珞狮南路"
-	categoryId: 1
-	latitude: 30.49984
-	longitude: 114.34253
-	name: "1"
-	phone: "2"
+​	address: "湖北省武汉市洪山区珞狮南路"
+​	categoryId: 1
+​	latitude: 30.49984
+​	longitude: 114.34253
+​	name: "1"
+​	phone: "2"
 }
 离我最近GET
 http://127.0.0.1:3000/shops/near

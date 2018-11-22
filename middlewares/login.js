@@ -8,8 +8,10 @@ module.exports = async (ctx,next) => {
 
   if (isNonCheck)return await next(); // 是登录和注册,直接放行
 
+  console.log(ctx.session);
+
   // 如果用户没有登录 !ctx.session.user
-  if (!ctx.session.user) {
+  if (ctx.session== undefined || !ctx.session.user) {
     ctx.body = `<div>
           <a href="/user/login">没有登录,去登录</a>
     </div>`;
